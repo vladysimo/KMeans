@@ -1,5 +1,5 @@
 /*
- * @author Himank Chaudhary
+ * @author Andrei Vlad Postoaca
  */
 
 import java.io.BufferedReader;
@@ -9,7 +9,6 @@ import java.io.InputStreamReader;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.fs.Path;
@@ -25,10 +24,7 @@ import org.apache.hadoop.fs.FileSystem;
 
 @SuppressWarnings("deprecation")
 public class KMeans {
-    /*
-	public static String OUT = "outfile";
-	public static String IN = "inputlarger";
-	*/
+
 	public static String CENTROID_FILE_NAME = "centroid.txt";
 	public static String OUTPUT_FILE_NAME = "part-r-00000";
 	public static String DATA_FILE_NAME = "data.txt";
@@ -139,13 +135,6 @@ public class KMeans {
 	}
 
 	public static void run(String[] args) throws Exception {
-		/*
-		IN = args[0];
-		OUT = args[1];
-		String input = IN;
-		String output = OUT + System.nanoTime();
-		String again_input = output;
-		*/
 
 		// Reiterating till the convergence
 		int iteration = 0;
