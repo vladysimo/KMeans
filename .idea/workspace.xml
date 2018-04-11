@@ -6,9 +6,7 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="99cec14f-e334-46a5-995f-310eab18d365" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/src/KMeans.java" afterPath="$PROJECT_DIR$/src/KMeans.java" />
-    </list>
+    <list default="true" id="99cec14f-e334-46a5-995f-310eab18d365" name="Default" comment="" />
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
