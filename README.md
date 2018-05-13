@@ -1,1 +1,1 @@
-# kmeans.KMeans
+# KMeans and CMeans for Apache Hadoop

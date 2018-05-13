@@ -8,22 +8,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="2cd7cb84-0bf7-4422-85e9-e99c2512ef46" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/CMeans_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cmeans/CMeans.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/cmeans/META-INF/MANIFEST.MF" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/kmeans/META-INF/MANIFEST.MF" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/KMeans_jar.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/KMeans_jar.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/K_Means.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/KMeans.iml" beforeDir="false" afterPath="$PROJECT_DIR$/KMeans.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KMeans/KMeans$KMeansMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KMeans/KMeans$KMeansReducer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KMeans/KMeans.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/KMeans/META-INF/MANIFEST.MF" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/script.sh" beforeDir="false" afterPath="$PROJECT_DIR$/script.sh" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/KMeans.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/kmeans/KMeans.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -56,7 +41,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CMeans.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="CMeans.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/cmeans/CMeans.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1012">
@@ -69,29 +54,20 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="README.md" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret column="37" selection-start-column="37" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="script.sh" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/script.sh">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="90">
               <caret line="6" column="84" selection-start-line="6" selection-start-column="84" selection-end-line="6" selection-end-column="84" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="out_kmeans" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/out_kmeans">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="195" column="63" lean-forward="true" selection-start-line="195" selection-start-column="63" selection-end-line="195" selection-end-column="63" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="out_cmeans" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/out_cmeans">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-387">
-              <caret line="177" column="10" lean-forward="true" selection-start-line="177" selection-start-column="10" selection-end-line="177" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -122,6 +98,7 @@
         <option value="$PROJECT_DIR$/script.sh" />
         <option value="$PROJECT_DIR$/src/kmeans/KMeans.java" />
         <option value="$PROJECT_DIR$/src/cmeans/CMeans.java" />
+        <option value="$PROJECT_DIR$/README.md" />
       </list>
     </option>
   </component>
@@ -390,6 +367,13 @@
             <element signature="imports" expanded="true" />
             <element signature="e#830#862#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="37" selection-start-column="37" selection-end-column="37" />
         </state>
       </provider>
     </entry>
