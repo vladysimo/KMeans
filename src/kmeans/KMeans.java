@@ -1,4 +1,4 @@
-/*
+package kmeans;/*
  * @author Andrei Vlad Postoaca
  */
 
@@ -28,7 +28,7 @@ public class KMeans {
 	public static String CENTROID_FILE_NAME = "centroid.txt";
 	public static String OUTPUT_FILE_NAME = "part-r-00000";
 	public static String DATA_FILE_NAME = "data.txt";
-	public static String JOB_NAME = "KMeans";
+	public static String JOB_NAME = "kmeans.KMeans";
 	public static String SPLITTER = "\t| ";
 	public static List<Double> mCenters = new ArrayList<Double>();
 
@@ -71,10 +71,10 @@ public class KMeans {
 		 */
 		@Override
         protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
-            String line = value.toString();
-            double point = Double.parseDouble(line);
-            double min1, min2 = Double.MAX_VALUE, nearest_center = mCenters
-                    .get(0);
+
+            double point = Double.parseDouble(value.toString());
+            double min1, min2 = Double.MAX_VALUE, nearest_center = mCenters.get(0);
+
             // Find the minimum center from a point
             for (double c : mCenters) {
                 min1 = c - point;
@@ -83,6 +83,7 @@ public class KMeans {
                     min2 = min1;
                 }
             }
+
             context.write(new DoubleWritable(nearest_center),
                     new Text(Double.toString(point)));
             System.out.println("=== [MAP] " + nearest_center + " " + point);
@@ -99,8 +100,7 @@ public class KMeans {
 		@Override
 		public void reduce(DoubleWritable key, Iterable<Text> values, Context context)
 				throws IOException, InterruptedException {
-			double newCenter;
-			double sum = 0;
+			double newCenter, sum = 0, point;
 			int no_elements = 0;
 			String points_out = "";
 
@@ -108,17 +108,12 @@ public class KMeans {
 
             for (Text val : values) {
 
-			    String line = val.toString();
-                String[] points_in = line.split(" ");
+                point = Double.valueOf(val.toString());
+                points_out = points_out + " " + point;
+                System.out.print(point + " ");
 
-                for (String point : points_in)
-                {
-                    System.out.print(point + " ");
-                    double d = Double.valueOf(point);
-                    points_out = points_out + " " + point;
-                    sum = sum + d;
-                    no_elements++;
-                }
+                sum += point;
+                no_elements++;
             }
             System.out.println();
 
@@ -216,7 +211,7 @@ public class KMeans {
 
             iteration++;
 
-            if (iteration == 5)
+            if (iteration == 2)
                 break;
 
 

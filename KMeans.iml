@@ -7,64 +7,38 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/common" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES />
-        <jarDirectory url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/common" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/common/lib" />
+          <root url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/httpfs" />
+          <root url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/yarn" />
+          <root url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/common" />
+          <root url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/hdfs" />
+          <root url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/mapreduce" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/common/lib" />
+          <root url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/common/jdiff" />
+          <root url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/hdfs/jdiff" />
+          <root url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/mapreduce/jdiff" />
         </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/common/lib" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/common/lib" recursive="false" type="SOURCES" />
+        <jarDirectory url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/common" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/hdfs" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/mapreduce" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/yarn" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="module-library" exported="">
+    <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/hdfs" />
+          <root url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/common/lib" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/hdfs/jdiff" />
+          <root url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/common/lib" />
         </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/hdfs" recursive="false" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/hdfs/lib" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/hdfs/lib" />
-        </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/hdfs/lib" recursive="false" />
-        <jarDirectory url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/hdfs/lib" recursive="false" type="SOURCES" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library" exported="">
-      <library>
-        <CLASSES>
-          <root url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/mapreduce" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/mapreduce/jdiff" />
-        </SOURCES>
-        <jarDirectory url="file://$MODULE_DIR$/../hadoop-3.1.0/share/hadoop/mapreduce" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/common/lib" recursive="false" />
+        <jarDirectory url="file://$MODULE_DIR$/../hadoop/hadoop-2.9.0/share/hadoop/common/lib" recursive="false" type="SOURCES" />
       </library>
     </orderEntry>
   </component>

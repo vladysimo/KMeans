@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="K-Means">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/out/artifacts/K_Means_jar/K-Means.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
