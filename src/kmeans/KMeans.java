@@ -47,8 +47,8 @@ public class KMeans {
             super.setup(context);
 
             URI[] cacheFiles = context.getCacheFiles();
-            System.out.println("=== " + cacheFiles.length + " " + cacheFiles[0].getPath() + " " +
-                    cacheFiles[0].getPath().substring(cacheFiles[0].getPath().lastIndexOf("/") + 1));
+            //System.out.println("=== " + cacheFiles.length + " " + cacheFiles[0].getPath() + " " +
+            //        cacheFiles[0].getPath().substring(cacheFiles[0].getPath().lastIndexOf("/") + 1));
             if (cacheFiles != null && cacheFiles.length > 0)
             {
                 String line;
@@ -60,7 +60,7 @@ public class KMeans {
                     String[] temp = line.split(SPLITTER);
                     mCenters.add(Double.parseDouble(temp[0]));
                 }
-                System.out.println("=== " + mCenters);
+                //System.out.println("=== " + mCenters);
                 cacheReader.close();
             }
         }
@@ -86,7 +86,7 @@ public class KMeans {
 
             context.write(new DoubleWritable(nearest_center),
                     new Text(Double.toString(point)));
-            System.out.println("=== [MAP] " + nearest_center + " " + point);
+            //System.out.println("=== [MAP] " + nearest_center + " " + point);
         }
     }
 
@@ -104,18 +104,18 @@ public class KMeans {
 			int no_elements = 0;
 			String points_out = "";
 
-            System.out.print("=== [REDUCE] " + key + " ");
+            //System.out.print("=== [REDUCE] " + key + " ");
 
             for (Text val : values) {
 
                 point = Double.valueOf(val.toString());
                 points_out = points_out + " " + point;
-                System.out.print(point + " ");
+                //System.out.print(point + " ");
 
                 sum += point;
                 no_elements++;
             }
-            System.out.println();
+            //System.out.println();
 
 			// We have new center now
 			newCenter = sum / no_elements;
@@ -142,7 +142,7 @@ public class KMeans {
 			if (iteration == 0) {
 				//Path hdfsPath = new Path(input + CENTROID_FILE_NAME);
                 Path hdfsPath = new Path("hdfs://localhost:9000/user/vlad/input/centroid.txt");
-                System.out.println("=== " + hdfsPath.toUri());
+                //System.out.println("=== " + hdfsPath.toUri());
 				// upload the file to hdfs. Overwrite any existing copy.
 				job.addCacheFile(hdfsPath.toUri());
 			} else {
@@ -211,7 +211,7 @@ public class KMeans {
 
             iteration++;
 
-            if (iteration == 2)
+            if (iteration == 10)
                 break;
 
 

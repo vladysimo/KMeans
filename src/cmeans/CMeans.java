@@ -54,8 +54,8 @@ public class CMeans {
             super.setup(context);
 
             URI[] cacheFiles = context.getCacheFiles();
-            System.out.println("=== " + cacheFiles.length + " " + cacheFiles[0].getPath() + " " +
-                    cacheFiles[0].getPath().substring(cacheFiles[0].getPath().lastIndexOf("/") + 1));
+            //System.out.println("=== " + cacheFiles.length + " " + cacheFiles[0].getPath() + " " +
+            //        cacheFiles[0].getPath().substring(cacheFiles[0].getPath().lastIndexOf("/") + 1));
             if (cacheFiles != null && cacheFiles.length > 0)
             {
                 String line;
@@ -71,7 +71,7 @@ public class CMeans {
                     mDistances.add(new HashMap<>());
                     mMembership.add(new HashMap<>());
                 }
-                System.out.println("=== " + mCenters);
+                //System.out.println("=== " + mCenters);
                 cacheReader.close();
             }
         }
@@ -133,7 +133,7 @@ public class CMeans {
             for (int i = 0; i < mCenters.size(); i++) {
                 context.write(new IntWritable(i), new Text(Double.toString(point)));
             }
-            System.out.println("=== [MAP] " + nearest_center_id + " " + nearest_center + " " + point);
+            //System.out.println("=== [MAP] " + nearest_center_id + " " + nearest_center + " " + point);
         }
     }
 
@@ -150,18 +150,18 @@ public class CMeans {
             double newCenter, point, numerator = 0, denominator = 0;
             String points_out = "";
 
-            System.out.print("=== [REDUCE] " + key + " ");
+            //System.out.print("=== [REDUCE] " + key + " ");
 
             for (Text val : values) {
 
                 point = Double.valueOf(val.toString());
                 points_out = points_out + " " + point;
-                System.out.print(point + " ");
+                //System.out.print(point + " ");
 
                 numerator += Math.pow(mMembership.get(key.get()).get(point), fuzziness) * point;
                 denominator += Math.pow(mMembership.get(key.get()).get(point), fuzziness);
             }
-            System.out.println();
+            //System.out.println();
 
             newCenter = numerator / denominator;
 
@@ -190,7 +190,7 @@ public class CMeans {
             if (iteration == 0) {
                 //Path hdfsPath = new Path(input + CENTROID_FILE_NAME);
                 Path hdfsPath = new Path("hdfs://localhost:9000/user/vlad/input/centroid.txt");
-                System.out.println("=== " + hdfsPath.toUri());
+                //System.out.println("=== " + hdfsPath.toUri());
                 // upload the file to hdfs. Overwrite any existing copy.
                 job.addCacheFile(hdfsPath.toUri());
             } else {
@@ -214,6 +214,7 @@ public class CMeans {
 
             job.waitForCompletion(true);
 
+            /*
             for (int i = 0; i < mCenters.size(); i++) {
 
                 System.out.print(mCenters.get(i) + " ");
@@ -222,6 +223,7 @@ public class CMeans {
                 }
                 System.out.println();
             }
+            */
 
             Path outfile = new Path("output_" + iteration + "/" + OUTPUT_FILE_NAME);
             FileSystem fs = FileSystem.get(job.getConfiguration());
@@ -262,7 +264,7 @@ public class CMeans {
 
             iteration++;
 
-            if (iteration == 2)
+            if (iteration == 10)
                 break;
 
 
