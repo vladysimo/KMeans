@@ -213,29 +213,6 @@ public class KMeans {
 
             if (iteration == 10)
                 break;
-
-
-			/*
-			// Sort the old centroid and new centroid and check for convergence
-			// condition
-			Collections.sort(centers_next);
-			Collections.sort(centers_prev);
-
-			Iterator<Double> it = centers_prev.iterator();
-			for (double d : centers_next) {
-				double temp = it.next();
-				if (Math.abs(temp - d) <= 0.1) {
-					isdone = true;
-				} else {
-					isdone = false;
-					break;
-				}
-			}
-			*/
-			/*
-			again_input = output;
-			output = OUT + System.nanoTime();
-			*/
 		}
 	}
 }

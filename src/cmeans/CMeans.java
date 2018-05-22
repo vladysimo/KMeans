@@ -35,9 +35,9 @@ public class CMeans {
     public static String SPLITTER = "\t| ";
 
     public static List<Double> mCenters = new ArrayList<>();
-    public static List<Map<Double, Double>> mDistances = new ArrayList<>();
-    public static List<Map<Double, Double>> mMembership = new ArrayList<>();
-    public static double fuzziness;
+    //public static List<Map<Double, Double>> mDistances = new ArrayList<>();
+    //public static List<Map<Double, Double>> mMembership = new ArrayList<>();
+    public static final double FUZZINESS = 2d;
 
     /*
      * In Mapper class we are overriding configure function. In this we are
@@ -60,16 +60,16 @@ public class CMeans {
             {
                 String line;
                 mCenters.clear();
-                mDistances.clear();
-                mMembership.clear();
+                //mDistances.clear();
+                //mMembership.clear();
                 BufferedReader cacheReader = new BufferedReader(new FileReader(cacheFiles[0].getPath().substring(cacheFiles[0].getPath().lastIndexOf("/") + 1)));
                 // Read the file split by the splitter and store it in
                 // the list
                 while ((line = cacheReader.readLine()) != null) {
                     String[] temp = line.split(SPLITTER);
                     mCenters.add(Double.parseDouble(temp[0]));
-                    mDistances.add(new HashMap<>());
-                    mMembership.add(new HashMap<>());
+                    //mDistances.add(new HashMap<>());
+                    //mMembership.add(new HashMap<>());
                 }
                 //System.out.println("=== " + mCenters);
                 cacheReader.close();
@@ -89,10 +89,14 @@ public class CMeans {
             int nearest_center_id = 0;
             boolean is_centroid = false;
 
+            List<Double> distances = new ArrayList(mCenters.size());
+            List<Double> memberships = new ArrayList<>(mCenters.size());
+
             // Find the minimum center from a point
             for (int i = 0; i < mCenters.size(); i++) {
                 distance = Math.abs(mCenters.get(i) - point);
-                mDistances.get(i).put(point, distance);
+                //mDistances.get(i).put(point, distance);
+                distances.add(i, distance);
                 if (distance == 0.0d)
                     is_centroid = true;
             }
@@ -101,26 +105,32 @@ public class CMeans {
 
                 for (int i = 0; i < mCenters.size(); i++)
                     if (mCenters.get(i) - point == 0) {
-                        mMembership.get(i).put(point, 1.0d);
+                        //mMembership.get(i).put(point, 1.0d);
+                        memberships.add(i, 1.0d);
                         nearest_center_id = i;
                         nearest_center = mCenters.get(i);
                     }
-                    else
-                        mMembership.get(i).put(point, 0.0d);
+                    else {
+                        //mMembership.get(i).put(point, 0.0d);
+                        memberships.add(i, 0.0d);
+                    }
             }
             else {
                 for (int i = 0; i < mCenters.size(); i++) {
-                    a = 1 / mDistances.get(i).get(point);
-                    b = 1 / (fuzziness - 1);
+                    //a = 1 / mDistances.get(i).get(point);
+                    a = 1 / distances.get(i);
+                    b = 1 / (FUZZINESS - 1);
                     denominator += Math.pow(a, b);
                 }
 
                 for (int i = 0; i < mCenters.size(); i++) {
-                    a = 1 / mDistances.get(i).get(point);
-                    b = 1 / (fuzziness - 1);
+                    //a = 1 / mDistances.get(i).get(point);
+                    a = 1 / distances.get(i);
+                    b = 1 / (FUZZINESS - 1);
                     numerator = Math.pow(a, b);
                     membership = numerator / denominator;
-                    mMembership.get(i).put(point, membership);
+                    //mMembership.get(i).put(point, membership);
+                    memberships.add(i, membership);
 
                     if (membership > max) {
                         nearest_center_id = i;
@@ -131,7 +141,7 @@ public class CMeans {
             }
 
             for (int i = 0; i < mCenters.size(); i++) {
-                context.write(new IntWritable(i), new Text(Double.toString(point)));
+                context.write(new IntWritable(i), new Text(Double.toString(point) + " " + Double.toString(memberships.get(i))));
             }
             //System.out.println("=== [MAP] " + nearest_center_id + " " + nearest_center + " " + point);
         }
@@ -147,19 +157,29 @@ public class CMeans {
         @Override
         public void reduce(IntWritable key, Iterable<Text> values, Context context)
                 throws IOException, InterruptedException {
-            double newCenter, point, numerator = 0, denominator = 0;
+            double newCenter = -1, numerator = 0, denominator = 0, point, membership;
             String points_out = "";
 
             //System.out.print("=== [REDUCE] " + key + " ");
 
-            for (Text val : values) {
+            List<Double> points = new ArrayList<>();
+            List<Double> memberships = new ArrayList<>();
 
-                point = Double.valueOf(val.toString());
-                points_out = points_out + " " + point;
+            for (Text val : values) {
+                String[] pair = val.toString().split(" ");
+                points.add(Double.valueOf(pair[0]));
+                memberships.add(Double.valueOf(pair[1]));
+            }
+
+            for (int i = 0; i < points.size(); i++) {
+
+                point = points.get(i);
+                membership = memberships.get(i);
+                //points_out = points_out + " " + point;
                 //System.out.print(point + " ");
 
-                numerator += Math.pow(mMembership.get(key.get()).get(point), fuzziness) * point;
-                denominator += Math.pow(mMembership.get(key.get()).get(point), fuzziness);
+                numerator += Math.pow(membership, FUZZINESS) * point;
+                denominator += Math.pow(membership, FUZZINESS);
             }
             //System.out.println();
 
@@ -176,9 +196,6 @@ public class CMeans {
     public static void run(String[] args) throws Exception {
 
         // Reiterating till the convergence
-
-        // TODO: should get this as cli argument
-        fuzziness = 2d;
 
         int iteration = 0;
         boolean isdone = false;
@@ -213,17 +230,6 @@ public class CMeans {
             FileOutputFormat.setOutputPath(job, new Path("output_" + iteration + "/"));
 
             job.waitForCompletion(true);
-
-            /*
-            for (int i = 0; i < mCenters.size(); i++) {
-
-                System.out.print(mCenters.get(i) + " ");
-                for (Double key : mDistances.get(i).keySet()) {
-                    System.out.print("(" + key + ", " + mDistances.get(i).get(key) + ", " + mMembership.get(i).get(key) + ") ");
-                }
-                System.out.println();
-            }
-            */
 
             Path outfile = new Path("output_" + iteration + "/" + OUTPUT_FILE_NAME);
             FileSystem fs = FileSystem.get(job.getConfiguration());
@@ -266,29 +272,6 @@ public class CMeans {
 
             if (iteration == 10)
                 break;
-
-
-			/*
-			// Sort the old centroid and new centroid and check for convergence
-			// condition
-			Collections.sort(centers_next);
-			Collections.sort(centers_prev);
-
-			Iterator<Double> it = centers_prev.iterator();
-			for (double d : centers_next) {
-				double temp = it.next();
-				if (Math.abs(temp - d) <= 0.1) {
-					isdone = true;
-				} else {
-					isdone = false;
-					break;
-				}
-			}
-			*/
-			/*
-			again_input = output;
-			output = OUT + System.nanoTime();
-			*/
         }
     }
 }
